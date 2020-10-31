@@ -1,16 +1,13 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Security.Claims;
 using System.Text.Json;
+using IdentityServer4.Models;
 using IdentityServer4.Test;
 
 namespace OAuthServer.Quickstart
 {
-    public class TestUsers
+    public static class JsonConfigReader
     {
         private static List<TestUser> _users;
         public static List<TestUser> Users
@@ -20,14 +17,46 @@ namespace OAuthServer.Quickstart
                 if (_users == null)
                 {
                     string usersText = File.ReadAllText("users.json");
-                    var testUsers = JsonSerializer.Deserialize<List<JsonTestUser>>(usersText);
+                    var testUsers = JsonSerializer.Deserialize<List<JsonTestUser>>(usersText, new JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
                     _users = ConvertToTestUsers(testUsers);
                 }
 
                 return _users;
             }
         }
-        
+
+        private static JsonClientsContainer _container;
+
+        private static List<ApiScope> _apiScopes;
+        public static List<ApiScope> ApiScopes
+        {
+            get
+            {
+                if (_apiScopes == null)
+                {
+                    if (_container == null)
+                    {
+                        string containerText = File.ReadAllText("clients.json");
+                        _container = JsonSerializer.Deserialize<JsonClientsContainer>(containerText, new JsonSerializerOptions()
+                        {
+                            PropertyNameCaseInsensitive = true
+                        });
+                    }
+
+                    _apiScopes = new List<ApiScope>();
+                    foreach (string name in _container.ApiScopes)
+                    {
+                        _apiScopes.Add(new ApiScope(name));
+                    }
+                }
+
+                return _apiScopes;
+            }
+        }
+
         private static List<TestUser> ConvertToTestUsers(IList<JsonTestUser> jsonTestUsers)
         {
             var list = new List<TestUser>();

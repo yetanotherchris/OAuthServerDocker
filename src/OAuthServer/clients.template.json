@@ -1,0 +1,59 @@
+﻿{
+  "apiScopes" : [""],
+  "clients": [
+    {
+      "ClientId" : "",
+      "ClientName" : "",
+      "ClientSecrets" : [
+      {"value": "12334567890"}
+      ],
+      "LogoUri" : "",
+      "AllowedGrantTypes" : ["authorization_code"],
+      "RedirectUris" : [""],
+      "BackChannelLogoutUri" : "",
+      "PostLogoutRedirectUris" : [""],
+      "FrontChannelLogoutUri" : "",
+      "AllowedScopes" : [""],
+      "Enabled" : true,
+      "ProtocolType" : "",
+      "RequireClientSecret" : true,
+      "Description" : "",
+      "ClientUri" : "",
+      "RequireConsent" : true,
+      "AllowRememberConsent" : true,
+      "RequirePkce" : true,
+      "AllowPlainTextPkce" : false,
+      "RequireRequestObject" : true,
+      "AllowAccessTokensViaBrowser" : true,
+      "FrontChannelLogoutSessionRequired" : true,
+      "BackChannelLogoutSessionRequired" : true,
+      "AllowOfflineAccess" : true,
+      "AlwaysIncludeUserClaimsInIdToken" : true,
+      "IdentityTokenLifetime" : 300,
+      "AllowedIdentityTokenSigningAlgorithms" : [""],
+      "AccessTokenLifetime" : 300,
+      "AuthorizationCodeLifetime" : 300,
+      "AbsoluteRefreshTokenLifetime" : 300,
+      "SlidingRefreshTokenLifetime" : 300,
+      "ConsentLifetime" : 300,
+      "RefreshTokenUsage" : "OneTimeOnly",
+      "UpdateAccessTokenClaimsOnRefresh" : true,
+      "RefreshTokenExpiration" : "Absolute",
+      "AccessTokenType" : "JWT",
+      "EnableLocalLogin" : true,
+      "IdentityProviderRestrictions" : [""],
+      "IncludeJwtId" : true,
+      "Claims" : [""],
+      "AlwaysSendClientClaims" : true,
+      "ClientClaimsPrefix" : "",
+      "PairWiseSubjectSalt" : "",
+      "UserSsoLifetime" : 300,
+      "UserCodeType" : "",
+      "DeviceCodeLifetime" : 300,
+      "AllowedCorsOrigins" : [""],
+      "Properties" : {
+        "name": "value"
+      }
+    }
+  ]
+}
