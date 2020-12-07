@@ -11,4 +11,15 @@
     <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="certs\public.pem" />
+    <Content Include="certs\public.pem">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Remove="certs\private.pem" />
+    <Content Include="certs\private.pem">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

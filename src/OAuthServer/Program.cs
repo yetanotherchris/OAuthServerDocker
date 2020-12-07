@@ -46,7 +46,7 @@ namespace OAuthServer
                 {
                     webBuilder.ConfigureAppConfiguration(builder =>
                     {
-                        builder.AddJsonFile("clients.json");
+                        builder.AddJsonFile("Config/clients.json");
                     });
                     webBuilder.UseStartup<Startup>();
                 });

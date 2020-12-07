@@ -5,21 +5,25 @@
       "clientId": "client1",
       "clientName": "client_credentials (api usage)",
       "clientSecrets": [
-        {"value": "12334567890"}
+        {
+          "value": "12334567890"
+        }
       ]
     },
     {
       "clientId": "client2",
       "clientName": "authorization_code (interactive)",
       "clientSecrets": [
-        {"value": "12334567890"}
+        {
+          "value": "12334567890"
+        }
       ],
       "RequireClientSecret" : false,
       "RequirePkce": false,
       "allowedGrantTypes": ["authorization_code"],
-      "redirectUris": ["http://localhost:5000/debug"],
-      "frontChannelUri": "https://localhost:5000/signout-oidc",
-      "postLogoutUri": ["https://localhost:5000/signout-callback-oidc"],
+      "redirectUris": ["http://localhost:3000/callback"],
+      "frontChannelUri": "https://localhost:3000/signout-oidc",
+      "postLogoutUri": ["https://localhost:3000/signout-callback-oidc"],
       "allowOfflineAccess": true,
       "AllowedScopes" : ["openid"]
     }

@@ -16,7 +16,7 @@ namespace OAuthServer.Quickstart
             {
                 if (_users == null)
                 {
-                    string usersText = File.ReadAllText("users.json");
+                    string usersText = File.ReadAllText("Config/users.json");
                     var testUsers = JsonSerializer.Deserialize<List<JsonTestUser>>(usersText, new JsonSerializerOptions()
                     {
                         PropertyNameCaseInsensitive = true
@@ -39,7 +39,7 @@ namespace OAuthServer.Quickstart
                 {
                     if (_container == null)
                     {
-                        string containerText = File.ReadAllText("clients.json");
+                        string containerText = File.ReadAllText("Config/clients.json");
                         _container = JsonSerializer.Deserialize<JsonClientsContainer>(containerText, new JsonSerializerOptions()
                         {
                             PropertyNameCaseInsensitive = true

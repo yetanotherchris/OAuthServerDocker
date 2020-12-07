@@ -1,6 +1,9 @@
-﻿using IdentityServer4.Models;
+﻿using System;
+using IdentityServer4.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,15 +28,15 @@ namespace OAuthServer
 
             var builder = services.AddIdentityServer(options =>
             {
+                options.Authentication.CookieAuthenticationScheme =
+                    CookieAuthenticationDefaults.AuthenticationScheme;
+                options.Authentication.CheckSessionCookieName = "oauthserver_auth";
                 options.Events.RaiseErrorEvents = true;
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
-
-                // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
                 options.EmitStaticAudienceClaim = true;
-            })
-                .AddTestUsers(JsonConfigReader.Users);
+            }).AddTestUsers(JsonConfigReader.Users);
 
             // in-memory, code config
             var clientsConfig = Configuration.GetSection("clients");
@@ -44,10 +47,19 @@ namespace OAuthServer
             });
             builder.AddInMemoryApiScopes(JsonConfigReader.ApiScopes);
             builder.AddInMemoryClients(clientsConfig);
-            //Client 
 
-            // not recommended for production - you need to store your key material somewhere secure
-            builder.AddDeveloperSigningCredential();
+            var signing = CredentialsHelper.GetSigningCredentials();
+            builder.AddSigningCredential(signing);
+            
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+                    options =>
+                    {
+                        options.Cookie.Name = "oauthserver";
+                        options.Cookie.HttpOnly = true;
+                        options.Cookie.SecurePolicy = CookieSecurePolicy.None;
+                        options.ExpireTimeSpan = TimeSpan.FromDays(30);
+                    });
         }
 
         public void Configure(IApplicationBuilder app)
@@ -60,8 +72,9 @@ namespace OAuthServer
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseIdentityServer();
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseIdentityServer();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();

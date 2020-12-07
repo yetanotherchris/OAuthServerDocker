@@ -1,0 +1,8 @@
+@clientid = client2
+@clientsecret = notused
+@authcode = 7A6A93349BE2C3A8FCB741A71CD6C01B5463A40E14342BC0E7E528F6F9661D69
+
+POST http://localhost:5000/connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code&code={{authcode}}&client_id={{clientid}}&redirect_uri=http://localhost:3000/callback&scope=openid
