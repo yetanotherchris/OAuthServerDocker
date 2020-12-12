@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
+
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.0" />
+    
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="OpenIddict.AspNetCore" Version="3.0.0-beta6.20527.75" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="3.0.0-beta6.20527.75" />
+    <PackageReference Include="OpenIddict.Abstractions" Version="3.0.0-beta6.20527.75" />
+    <PackageReference Include="OpenIddict.Core" Version="3.0.0-beta6.20527.75" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore.Models" Version="3.0.0-beta6.20527.75" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="artifacts\obj\Aridka.Server\Aridka.Server.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="artifacts\obj\Aridka.Server\Debug\netcoreapp3.1\Aridka.Server.sourcelink.json" />
+    <_ContentIncludedByDefault Remove="artifacts\obj\Aridka.Server\Debug\netcoreapp3.1\project.razor.json" />
+    <_ContentIncludedByDefault Remove="artifacts\obj\Aridka.Server\project.assets.json" />
+    <_ContentIncludedByDefault Remove="artifacts\obj\Aridka.Server\project.packagespec.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data" />
+  </ItemGroup>
+
+</Project>

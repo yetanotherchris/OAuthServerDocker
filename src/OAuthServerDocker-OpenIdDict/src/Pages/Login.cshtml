@@ -1,0 +1,26 @@
+@page
+@model OAuthServerDocker.OpenIdDict.Pages.Login
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+<div>
+    @using (Html.BeginForm())
+    {
+        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+        <input type="hidden" name="originalQuery" value="@Model.OriginalQuery" />
+        <input type="text" name="email"/>
+        <input type="text" name="password">
+        <input type="submit">
+    }
+</div>
+</body>
+</html>
