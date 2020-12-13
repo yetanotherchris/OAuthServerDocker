@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace OAuthServer.IdentityServer
 {
-    public static class CredentialsHelper
+    public static class CertHelper
     {
         public static X509Certificate2 GetSigningCredentials()
         {

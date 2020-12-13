@@ -1,14 +1,14 @@
 ###
 # To run this file, install VS Code and the Rest Client extension
 # First visit https://oidcdebugger.com/ 
-# - use https://localhost:44385/connect/authorize
+# - use https://localhost:44385/connect/authorize (use port 5000 on Docker)
 # - use "client1", "openid", "code", "form_post"
 # - paste the code you get below
 
 @clientid = client1
 @clientSecret = secret
-@code = JSXGSeqV8QFpAsHRG4f0VzZloXPZX6Kq-f4Iulk57vc
-POST https://localhost:44385/connect/token
+@code = pybWfm1UhoEqPR4Cc2O56GuLEUIgcH8gnurMcEA2bZY
+POST https://localhost:5000/connect/token
 Content-Type: application/x-www-form-urlencoded
  
 grant_type=authorization_code&code={{code}}&client_id={{clientid}}&client_secret={{clientSecret}}&redirect_uri=https%3A%2F%2Foidcdebugger.com%2Fdebug
