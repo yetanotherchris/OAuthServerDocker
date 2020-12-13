@@ -1,0 +1,23 @@
+﻿version: '3'
+services:
+  
+  oauthserver:
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - '5000:5000'
+    depends_on:
+      - postgres
+    environment:
+      - ConnectionStrings:DefaultConnection=host=postgres-oauthserver;port=5432;database=openiddict;username=openiddict;password=openiddict;
+
+  postgres:
+    hostname: postgres-oauthserver
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=openiddict
+      - POSTGRES_PASSWORD=openiddict
+      - POSTGRES_DB=openiddict

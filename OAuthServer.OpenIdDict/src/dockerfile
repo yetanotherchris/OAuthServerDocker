@@ -1,0 +1,17 @@
+﻿FROM mcr.microsoft.com/dotnet/aspnet:3.1
+MAINTAINER Chris Small
+
+RUN mkdir /app
+COPY ./bin/Release/netcoreapp3.1/publish /app
+WORKDIR /app
+
+ENTRYPOINT ["dotnet", "/app/OAuthServer.OpenIdDict.dll"]
+
+# ASP.NET Core: Kestrel should listen on all IPs
+ENV ASPNETCORE_URLS="http://0.0.0.0:5000"
+ENV ASPNETCORE_ENVIRONMENT="Production"
+
+# Steps for building:
+#dotnet publish -c Release
+#docker build -t "oauthserver-openiddict" .
+#docker run -p 5000:5000 oauthserver-openiddict
