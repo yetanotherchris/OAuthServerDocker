@@ -66,7 +66,7 @@ namespace OAuthServer.OpenIdDict
                 NormalizedEmail = "test@localhost",
                 UserName = "test@localhost"
             };
-            var result = await userManager.CreateAsync(newUser, "Passw0rd-");
+            var result = await userManager.CreateAsync(newUser, "Password123=");
             if (!result.Succeeded)
                 throw new Exception("Failed to create a test user.");
         }

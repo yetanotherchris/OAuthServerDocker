@@ -47,7 +47,17 @@ namespace OAuthServer.IdentityServer
                     webBuilder.ConfigureAppConfiguration(builder =>
                     {
                         builder.AddJsonFile("Config/clients.json");
+                        builder.AddEnvironmentVariables();
                     });
+                    
+                    webBuilder.ConfigureKestrel(options =>
+                    {
+                        options.ConfigureHttpsDefaults(adapterOptions =>
+                        {
+                            adapterOptions.ServerCertificate = CertHelper.GetCertificate();
+                        });
+                    });
+                    
                     webBuilder.UseStartup<Startup>();
                 });
     }

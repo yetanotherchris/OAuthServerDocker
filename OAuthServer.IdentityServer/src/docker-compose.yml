@@ -1,0 +1,18 @@
+﻿version: '3'
+
+networks:
+  oauthserver-identityserver:
+    name: oauthserver-identityserver
+    
+services:
+  
+  oauthserver-identityserver:
+    container_name: oauthserver-identityserver
+    networks:
+      - oauthserver-identityserver
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - '5000:5000'
+    image: oauthserver-identityserver:latest

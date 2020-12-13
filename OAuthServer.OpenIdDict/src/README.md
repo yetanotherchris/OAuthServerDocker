@@ -28,7 +28,7 @@ server-side as you are passing in a client secret.
   - `dotnet ef database update`
 
 
-## Testing
+## Development testing
 
 ### Postgres
 
@@ -41,12 +41,15 @@ server-side as you are passing in a client secret.
 ### Flow testing
 - `dotnet run` in the project folder
 - Go to https://oidcdebugger.com/ 
-- Authorize Uri: https://localhost:44385/connect/authorize
+- Authorize Uri: https://localhost:5000/connect/authorize
 - ClientId: "client1"
 - Scope: "openid"
 - Response type: "code"
 - Response mode: "form_post"
+- Click "Send Request"
+- Login with "test@localhost" / Password123=
 - Open tokens.http in VS Code.
+- Replace the code you got from oidebugger.com
 - Run it, see the JWTs returned.
 
 [1]: https://github.com/openiddict/openiddict-core

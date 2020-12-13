@@ -7,11 +7,17 @@ namespace OAuthServer.IdentityServer
 {
     public static class CertHelper
     {
-        public static X509Certificate2 GetSigningCredentials()
+        // dotnet dev-certs https -ep $pwd/selfsigned.pem --format Pem -np
+        public static X509Certificate2 GetCertificate()
         {
-            byte[] publicPemBytes = File.ReadAllBytes("certs/public.pem");
+            return GetSigningCredentials("certs/selfsigned.pem", "certs/selfsigned.key");
+        }
+        
+        public static X509Certificate2 GetSigningCredentials(string publicCert="certs/public.pem", string privateCert="certs/private.pem")
+        {
+            byte[] publicPemBytes = File.ReadAllBytes(publicCert);
             using var publicX509 = new X509Certificate2(publicPemBytes);
-            var privateKeyText = File.ReadAllText("certs/private.pem");
+            var privateKeyText = File.ReadAllText(privateCert);
             var privateKeyBlocks = privateKeyText.Split("-", StringSplitOptions.RemoveEmptyEntries);
             var privateKeyBytes = Convert.FromBase64String(privateKeyBlocks[1]);
     

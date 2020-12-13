@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using IdentityModel.Client;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +13,11 @@ using OAuthServer.IdentityServer.Quickstart;
 
 namespace OAuthServer.IdentityServer
 {
+    // https://docs.identityserver.io/en/latest/topics/client_authentication.html
+    // https://docs.identityserver.io/en/latest/topics/clients.html
+    // Secret Value format:
+    // <Insert Sha256 hash of the secret encoded as Base64 string>
+    
     public class Startup
     {
         public IWebHostEnvironment Environment { get; }
@@ -37,7 +44,7 @@ namespace OAuthServer.IdentityServer
                 options.Events.RaiseSuccessEvents = true;
                 options.EmitStaticAudienceClaim = true;
             }).AddTestUsers(JsonConfigReader.Users);
-
+            
             // in-memory, code config
             var clientsConfig = Configuration.GetSection("clients");
             builder.AddInMemoryIdentityResources(new IdentityResource[]

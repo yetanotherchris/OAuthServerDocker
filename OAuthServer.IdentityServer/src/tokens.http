@@ -1,0 +1,16 @@
+# https://localhost:5000/.well-known/openid-configuration for urls
+###
+# To run this file, install VS Code and the Rest Client extension
+# First visit https://oidcdebugger.com/ 
+# - use https://localhost:44385/connect/authorize (use port 5000 on Docker)
+# - use "client1", "openid", "code", "form_post"
+# - paste the code you get below
+
+@clientid = client1
+@clientsecret = password
+@authcode = 4176B0B40625823AFA9D9E0604500162810B8CF0D55E7883AE2F906FD4A21AFD
+
+POST https://localhost:5000/connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code&code={{authcode}}&client_id={{clientid}}&client_secret={{clientsecret}}&redirect_uri=https%3A%2F%2Foidcdebugger.com%2Fdebug&scope=openid

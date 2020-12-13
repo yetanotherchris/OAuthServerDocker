@@ -1,0 +1,32 @@
+﻿{
+  "apiScopes": [ "scope1", "scope2" ],
+  "clients": [
+    {
+      "clientId": "client1",
+      "clientName": "authorization_code (interactive)",
+      "clientSecrets": [
+        {
+          "Description": "Client 1's secret - it's 'password'",
+          "Value": "XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg="
+        }
+      ],
+      "RequireClientSecret" : true,
+      "RequirePkce": false,
+      "allowedGrantTypes": ["authorization_code"],
+      "redirectUris": ["https://oidcdebugger.com/debug"],
+      "frontChannelUri": "https://localhost:5000/signout-oidc",
+      "postLogoutUri": ["https://localhost:5000/signout-callback-oidc"],
+      "allowOfflineAccess": true,
+      "AllowedScopes" : ["openid"]
+    },
+    {
+      "clientId": "client2",
+      "clientName": "client_credentials (api usage)",
+      "clientSecrets": [
+        {
+          "value": "12334567890"
+        }
+      ]
+    }
+  ]
+}

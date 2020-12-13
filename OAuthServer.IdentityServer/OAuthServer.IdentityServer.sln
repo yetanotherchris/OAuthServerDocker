@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAuthServer.IdentityServer", "src\OAuthServer.IdentityServer\OAuthServer.IdentityServer.csproj", "{F965FA10-8B39-479E-B244-32B30473F706}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAuthServer.IdentityServer", "src\OAuthServer.IdentityServer.csproj", "{F965FA10-8B39-479E-B244-32B30473F706}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

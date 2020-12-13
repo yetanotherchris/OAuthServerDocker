@@ -49,14 +49,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="certs\selfsigned.pem">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Remove="selfsigned.pem" />
-    <Content Include="selfsigned.pem">
+    <Content Include="certs\selfsigned.key">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Remove="selfsigned.key" />
-    <Content Include="selfsigned.key">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
 </Project>
