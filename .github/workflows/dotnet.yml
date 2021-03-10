@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  ci-build:
 
     runs-on: ubuntu-latest
 
@@ -17,17 +17,36 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: .NET Build
-      id: dotnetbuild
+
+    - name: .NET Build IdentityServer
+      id: dotnetbuild-idsvr
       run: |
         cd OAuthServer.IdentityServer/src
         dotnet publish -c Release
-    - name: Docker
-      id: dockerpublish
+
+    - name: .NET Build OpenIdDict
+      id: dotnetbuild-openiddict
+      run: |
+        cd OAuthServer.OpenIdDict/src
+        dotnet publish -c Release
+
+    - name: Docker build & push IdentityServer
+      id: dockerpublish-idsvr
       uses: matootie/github-docker@v3.1.0
       with:
         accessToken: ${{ github.token }}
         context: OAuthServer.IdentityServer/src
         imageName: oauthserver-identityserver 
-    - name: Print Image URL
-      run: echo ${{ steps.dockerpublish.outputs.imageURL }}
+
+    - name: Docker build & push OpenIdDict
+      id: dockerpublish-openiddict
+      uses: matootie/github-docker@v3.1.0
+      with:
+        accessToken: ${{ github.token }}
+        context: OAuthServer.OpenIdDict/src
+        imageName: oauthserver-openiddict 
+
+    - name: Print Image URLs
+      run: | 
+        echo ${{ steps.dockerpublish-idsvr.outputs.imageURL }}
+        echo ${{ steps.dockerpublish-openiddict.outputs.imageURL }}
