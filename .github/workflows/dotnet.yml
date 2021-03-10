@@ -27,5 +27,7 @@ jobs:
       uses: matootie/github-docker@v3.1.0
       with:
         accessToken: ${{ github.token }}
+        context: OAuthServer.IdentityServer/src
+        imageName: oauthserver-identityserver 
     - name: Print Image URL
       run: echo ${{ steps.dockerpublish.outputs.imageURL }}
