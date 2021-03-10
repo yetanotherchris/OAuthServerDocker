@@ -22,16 +22,10 @@ jobs:
       run: |
         cd OAuthServer.IdentityServer/src
         dotnet publish -c Release
-    - name: Docker Build
-      id: dockerbuild
-      run: |
-        cd OAuthServer.IdentityServer/src
-        docker build -t "yetanotherchris/oauthserver-identityserver:latest" .
     - name: Docker
       id: dockerpublish
       uses: matootie/github-docker@v3.1.0
       with:
         accessToken: ${{ github.token }}
-        tag: yetanotherchris/oauthserver-identityserver:latest
     - name: Print Image URL
       run: echo ${{ steps.dockerpublish.outputs.imageURL }}
