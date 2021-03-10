@@ -8,13 +8,21 @@ dotnet new -i IdentityServer4.Templates
 dotnet new is4inmem
 ```
 
-## Quickstart
-
-docker run todo
-
-## Debugging
-
-docker compose details todo
+### Testing
+- `cd src`
+- `dotnet run`
+- `docker-compose up`
+- Go to https://oidcdebugger.com/ 
+- Authorize Uri: https://localhost:5000/connect/authorize
+- ClientId: "client1"
+- Scope: "openid"
+- Response type: "code"
+- Response mode: "form_post"
+- Click "Send Request"
+- Login with "test@localhost" / Password123=
+- Open tokens.http in VS Code.
+- Replace the code you got from oidebugger.com
+- Run it, see the JWTs returned.
 
 ## Configuration
 

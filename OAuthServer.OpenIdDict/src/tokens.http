@@ -3,12 +3,20 @@
 # First visit https://oidcdebugger.com/ 
 # - use https://localhost:44385/connect/authorize (use port 5000 on Docker)
 # - use "client1", "openid", "code", "form_post"
-# - paste the code you get below
+# Click "Send request"
+
+# You will get a login page
+# - If you're not logged in, login with test@localhost/test@localhost
+
+# You will get redirected back to https://oidcdebugger.com/debug
+# - Paste the code you get in the @authcode variable below
+# 
+# Copy the access_code from the JSON result into https://jwt.ms/
 
 @clientid = client1
 @clientSecret = secret
-@code = pybWfm1UhoEqPR4Cc2O56GuLEUIgcH8gnurMcEA2bZY
+@authcode = npwcEUXtbi-v9CSE7G2A2_LtqQzxIh7rlbkkjq2L5zw
 POST https://localhost:5000/connect/token
 Content-Type: application/x-www-form-urlencoded
  
-grant_type=authorization_code&code={{code}}&client_id={{clientid}}&client_secret={{clientSecret}}&redirect_uri=https%3A%2F%2Foidcdebugger.com%2Fdebug
+grant_type=authorization_code&code={{authcode}}&client_id={{clientid}}&client_secret={{clientSecret}}&redirect_uri=https%3A%2F%2Foidcdebugger.com%2Fdebug
