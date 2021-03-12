@@ -55,7 +55,7 @@ namespace OAuthServer.IdentityServer
             builder.AddInMemoryApiScopes(JsonConfigReader.ApiScopes);
             builder.AddInMemoryClients(clientsConfig);
 
-            var signing = CertHelper.GetSigningCredentials();
+            var signing = CertHelper.CreateFromPublicPrivateKey();
             builder.AddSigningCredential(signing);
             
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

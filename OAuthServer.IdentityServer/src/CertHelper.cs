@@ -10,10 +10,13 @@ namespace OAuthServer.IdentityServer
         // dotnet dev-certs https -ep $pwd/selfsigned.pem --format Pem -np
         public static X509Certificate2 GetCertificate()
         {
-            return GetSigningCredentials("certs/selfsigned.pem", "certs/selfsigned.key");
+            X509Certificate2 sslCert = CreateFromPublicPrivateKey("certs/selfsigned.pem", "certs/selfsigned.key");
+            
+            // work around for Windows (WinApi) problems with PEMS, still in .NET 5
+            return new X509Certificate2(sslCert.Export(X509ContentType.Pkcs12));
         }
         
-        public static X509Certificate2 GetSigningCredentials(string publicCert="certs/public.pem", string privateCert="certs/private.pem")
+        public static X509Certificate2 CreateFromPublicPrivateKey(string publicCert="certs/public.pem", string privateCert="certs/private.pem")
         {
             byte[] publicPemBytes = File.ReadAllBytes(publicCert);
             using var publicX509 = new X509Certificate2(publicPemBytes);
@@ -30,7 +33,7 @@ namespace OAuthServer.IdentityServer
             {
                 rsa.ImportRSAPrivateKey(privateKeyBytes, out _);
             }
-            var keyPair = publicX509.CopyWithPrivateKey(rsa);
+            X509Certificate2 keyPair = publicX509.CopyWithPrivateKey(rsa);
             return keyPair;
         }
     }

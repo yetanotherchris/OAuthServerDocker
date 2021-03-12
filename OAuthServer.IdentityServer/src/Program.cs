@@ -39,8 +39,9 @@ namespace OAuthServer.IdentityServer
             }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args)
                 .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
@@ -49,7 +50,7 @@ namespace OAuthServer.IdentityServer
                         builder.AddJsonFile("Config/clients.json");
                         builder.AddEnvironmentVariables();
                     });
-                    
+
                     webBuilder.ConfigureKestrel(options =>
                     {
                         options.ConfigureHttpsDefaults(adapterOptions =>
@@ -57,8 +58,9 @@ namespace OAuthServer.IdentityServer
                             adapterOptions.ServerCertificate = CertHelper.GetCertificate();
                         });
                     });
-                    
+
                     webBuilder.UseStartup<Startup>();
                 });
+        }
     }
 }
