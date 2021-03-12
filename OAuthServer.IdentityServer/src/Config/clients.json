@@ -13,7 +13,10 @@
       "RequireClientSecret" : true,
       "RequirePkce": false,
       "allowedGrantTypes": ["authorization_code"],
-      "redirectUris": ["https://oidcdebugger.com/debug"],
+      "redirectUris": [
+        "https://oidcdebugger.com/debug",
+        "http://localhost:3000"
+      ],
       "frontChannelUri": "https://localhost:5000/signout-oidc",
       "postLogoutUri": ["https://localhost:5000/signout-callback-oidc"],
       "allowOfflineAccess": true,
